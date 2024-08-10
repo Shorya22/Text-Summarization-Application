@@ -19,7 +19,7 @@ huggingface_hub.login(token=hf_token)
 # model= AutoModelForSeq2SeqLM.from_pretrained("Shorya22/BART-Large-Fine_Tunned")
 # tokenizer= AutoTokenizer.from_pretrained("Shorya22/BART-Large-Fine_Tunned")
 
-@st.data_cache(max_entries=100, ttl=3600, persist=True, max_size=1e9)
+@st.cache(max_entries=100, ttl=3600, persist=True, max_size=1e9)
 def load_model_and_tokenizer():
     model = AutoModelForSeq2SeqLM.from_pretrained("Shorya22/BART-Large-Fine_Tunned")
     tokenizer = AutoTokenizer.from_pretrained("Shorya22/BART-Large-Fine_Tunned", use_fast=True)
