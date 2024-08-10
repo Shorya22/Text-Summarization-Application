@@ -16,8 +16,16 @@ import huggingface_hub
 huggingface_hub.login(token=hf_token)
 
 
-model= AutoModelForSeq2SeqLM.from_pretrained("Shorya22/BART-Large-Fine_Tunned")
-tokenizer= AutoTokenizer.from_pretrained("Shorya22/BART-Large-Fine_Tunned")
+# model= AutoModelForSeq2SeqLM.from_pretrained("Shorya22/BART-Large-Fine_Tunned")
+# tokenizer= AutoTokenizer.from_pretrained("Shorya22/BART-Large-Fine_Tunned")
+
+@st.cache(ttl=900)  # Cache for 15 min
+def load_model_and_tokenizer():
+    model = AutoModelForSeq2SeqLM.from_pretrained("Shorya22/BART-Large-Fine_Tunned")
+    tokenizer = AutoTokenizer.from_pretrained("Shorya22/BART-Large-Fine_Tunned",use_fast=True)
+    return model, tokenizer
+
+model, tokenizer = load_model_and_tokenizer()
 
 # Define the prompt template
 prompt = PromptTemplate(template="Summarize the following text\n\n{input_text}\n\nSummary:\n\n", input_variables=['input_text'])
