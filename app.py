@@ -9,12 +9,11 @@ from huggingface_hub import login
 warnings.filterwarnings("ignore")
 import streamlit as st
 
-# Retrieve the token from the secrets file
-token = st.secrets["hf_token"]
+hf_token = "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"
 
 # Login to Hugging Face using the token
 import huggingface_hub
-huggingface_hub.login(token=token)
+huggingface_hub.login(token=hf_token)
 
 
 model= AutoModelForSeq2SeqLM.from_pretrained("Shorya22/BART-Large-Fine_Tunned")
