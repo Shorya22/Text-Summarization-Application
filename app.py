@@ -27,6 +27,8 @@ llm= HuggingFacePipeline(pipeline=pipe)
 
 chain= prompt | llm
 
+
+st.header("Hello!")
 st.title("Text Summarization Application",)
 input= st.text_area("Enter text to summarize")
 
